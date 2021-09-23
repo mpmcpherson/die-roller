@@ -1,0 +1,47 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
+// To execute C#, please define "static void Main" on a class
+// named Solution.
+
+class Solution
+{
+    static void Main(string[] args)
+    {
+        // expected output of this is [1, 2, 3, 4, 11, 12, 13, 15, 17, 18]
+        IList<int> sortedList1 = new List<int>() { 1, 2, 3, 4, 17 };
+        IList<int> sortedList2 = new List<int>() { 11, 12, 13, 15, 18 };
+        
+        IList<int> results = Combine(sortedList1, sortedList2);
+        Console.WriteLine("Results: " + String.Join(",", results));
+    }
+    
+    /// <summary>
+    /// Combines two sorted lists into a third sorted list.
+    /// The following criteria applies:
+    ///     * Do not use built-in sorting methods.
+    /// </summary>
+    /// <param name="sorted1">The first sorted list.</param>
+    /// <param name="sorted2">The second sorted list.</param>
+    /// <returns>A sorted list that contains the contents of both.</returns>
+    public static IList<int> Combine(IList<int> sorted1, IList<int> sorted2)
+    {
+        IList<int> retValue = new List<int>();
+        
+        for(int i =0;i<sorted1.length+sorted2.length;i++)
+        {
+            var sortedFirst = sorted1.Pop();
+            var sortedSecond = sorted2.Pop();
+            if(sortedFirst < sortedSecond)
+                retValue.Add(sortedFirst);
+                sortedList2.Push(sortedSecond);
+            }else{ 
+                retValue.Add(sortedSecond); 
+                sortedList1.Push(sortedFirst);
+            }
+        }
+        
+        return retValue;
+    }
+}
